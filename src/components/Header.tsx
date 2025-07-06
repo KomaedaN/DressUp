@@ -10,7 +10,13 @@ const categories = [
 export default function Header() {
   return (
     <header className="flex h-[100px] items-center justify-between pr-[150px] pl-[150px]">
-      <Image src="/DressUp.png" alt="logo" className="h-[100px] w-auto" />
+      <Image
+        src="/DressUp.png"
+        alt="logo"
+        className="h-[100px] w-[100px]"
+        width={100}
+        height={100}
+      />
       <nav className="flex items-center justify-evenly">
         {categories.map((cat) => (
           <Link
@@ -22,7 +28,13 @@ export default function Header() {
           </Link>
         ))}
       </nav>
-      <Image src="/panier.png" alt="logo" className="h-[100px] w-auto" />
+      <Image
+        src="/panier.png"
+        alt="logo"
+        className=""
+        width={100}
+        height={100}
+      />
     </header>
   );
 }

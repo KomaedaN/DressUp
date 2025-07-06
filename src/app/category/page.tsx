@@ -3,17 +3,17 @@ import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/productCard";
 
 const produits = [
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "zd" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "zd" },
-  { nom: "short", categorieId: 1, prix: 200, image: "zd" },
-  { nom: "pull", categorieId: 1, prix: 100, image: "zd" },
+  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
+  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
+  { nom: "short", categorieId: 1, prix: 200, image: "/clothes.gif" },
+  { nom: "pull", categorieId: 1, prix: 100, image: "/clothes.gif" },
 ];
 
 export default function CategoryPage() {
