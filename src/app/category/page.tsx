@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/productCard";
 
@@ -31,14 +32,16 @@ export default function CategoryPage() {
       </nav>
       <div className="grid grid-cols-[6fr_1fr] pl-[150px] pr-[150px]">
         <section className="grid grid-cols-3 justify-items-center gap-6">
-          {products.map((product, idx) => (
-            <ProductCard
-              key={product.nom + idx}
-              nom={product.nom}
-              prix={product.prix}
-              image={product.image}
-            />
-          ))}
+          <Suspense>
+            {products.map((product, idx) => (
+              <ProductCard
+                key={product.nom + idx}
+                nom={product.nom}
+                prix={product.prix}
+                image={product.image}
+              />
+            ))}
+          </Suspense>
         </section>
         <div className="h-[calc(100vh-150px)] w-[25rem] bg-red-500"></div>
       </div>
