@@ -1,5 +1,3 @@
-"use client";
-import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/productCard";
 
 const produits = [
@@ -16,9 +14,13 @@ const produits = [
   { nom: "pull", categorieId: 1, prix: 100, image: "/clothes.gif" },
 ];
 
-export default function CategoryPage() {
-  const searchParams = useSearchParams();
-  const currentCategoryId = searchParams.get("cat");
+export default function CategoryPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const currentCategoryId = searchParams.cat;
+
   const products = produits.filter(
     (prod) => String(prod.categorieId) === currentCategoryId
   );
