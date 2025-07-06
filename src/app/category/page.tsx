@@ -32,10 +32,10 @@ export default function CategoryPage() {
         <section className="grid grid-cols-3 justify-items-center gap-6">
           {products.map((product) => (
             <ProductCard
-              key={products[0].nom}
-              nom={products[0].nom}
-              prix={products[0].prix}
-              image={products[0].image}
+              key={product.nom}
+              nom={product.nom}
+              prix={product.prix}
+              image={product.image}
             />
           ))}
         </section>
