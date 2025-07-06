@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const categories = [
   { id: "1", name: "Homme" },
@@ -9,7 +10,7 @@ const categories = [
 export default function Header() {
   return (
     <header className="flex h-[100px] items-center justify-between pr-[150px] pl-[150px]">
-      <img src="/DressUp.png" alt="logo" className="h-[100px] w-auto" />
+      <Image src="/DressUp.png" alt="logo" className="h-[100px] w-auto" />
       <nav className="flex items-center justify-evenly">
         {categories.map((cat) => (
           <Link
@@ -21,7 +22,7 @@ export default function Header() {
           </Link>
         ))}
       </nav>
-      <img src="/panier.png" alt="logo" className="h-[100px] w-auto" />
+      <Image src="/panier.png" alt="logo" className="h-[100px] w-auto" />
     </header>
   );
 }
