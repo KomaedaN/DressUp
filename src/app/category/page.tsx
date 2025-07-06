@@ -14,11 +14,7 @@ const produits = [
   { nom: "pull", categorieId: 1, prix: 100, image: "/clothes.gif" },
 ];
 
-export default function CategoryPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default async function CategoryPage({ searchParams }: any) {
   const currentCategoryId = searchParams.cat;
 
   const products = produits.filter(
