@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 const categories = [
-  { id: "1", name: "Homme" },
-  { id: "2", name: "Femme" },
-  { id: "3", name: "Accessoires" },
+  { id: "1", name: "homme" },
+  { id: "2", name: "femme" },
+  { id: "3", name: "accessoires" },
 ];
 
 export default function Header() {
@@ -21,7 +21,7 @@ export default function Header() {
         {categories.map((cat) => (
           <Link
             key={cat.id}
-            href={`/category?cat=${cat.id}`}
+            href={`/category?cat=${cat.name}`}
             className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
           >
             {cat.name}

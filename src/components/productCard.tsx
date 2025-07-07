@@ -1,49 +1,61 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { supabase } from "@/utils/supabaseClient";
 
-export type ProductProps = {
-  nom: string;
-  categorieId?: number;
-  prix?: number;
+type Product = {
+  id: number;
+  name: string;
+  category_gender: string;
+  category_type: string;
+  price: number;
   image?: string;
 };
 
-const produits: ProductProps[] = [
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 1, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 2, prix: 150, image: "/clothes.gif" },
-  { nom: "T-shirt", categorieId: 3, prix: 150, image: "/clothes.gif" },
-  { nom: "short", categorieId: 1, prix: 200, image: "/clothes.gif" },
-  { nom: "pull", categorieId: 1, prix: 100, image: "/clothes.gif" },
-];
-
 export default function ProductCard() {
   const searchParams = useSearchParams();
-  const currentCategoryId = searchParams.get("cat");
+  const currentCategoryGender = searchParams.get("cat");
 
-  const products = produits.filter(
-    (prod) => String(prod.categorieId) === currentCategoryId
-  );
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    async function fetchProducts() {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category_gender", currentCategoryGender);
+
+      if (error) {
+        console.error(error);
+        setProducts([]);
+      } else {
+        setProducts(data || []);
+      }
+      setLoading(false);
+    }
+
+    if (currentCategoryGender) {
+      fetchProducts();
+    }
+  }, [currentCategoryGender]);
+  if (loading) return <p>Chargement...</p>;
+  if (!products.length) return <p>Aucun produit trouvé.</p>;
 
   return (
     <>
-      {products.map((product, idx) => (
-        <div className="mt-8" key={idx}>
+      {products.map((product) => (
+        <div className="mt-8" key={product.id}>
           <Image
             className="h-[32rem] w-[27rem] bg-gray-500"
             src={product.image ?? "/clothes.gif"}
-            alt={product.nom}
+            alt={product.name}
             width={100}
             height={100}
           />
-          <p className="mt-4">{product.nom}</p>
-          <p className="mt-2">{product.prix} €</p>
+          <p className="mt-4">{product.name}</p>
+          <p className="mt-2">{product.price} €</p>
         </div>
       ))}
     </>
