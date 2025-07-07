@@ -1,4 +1,3 @@
-import ProductCard from "@/components/productCard";
 import CategoryContent from "@/components/CategoryContent";
 import BannerDetail from "@/components/BannerDetail";
 import { Suspense } from "react";
