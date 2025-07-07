@@ -16,17 +16,23 @@ type Product = {
 export default function ProductCard() {
   const searchParams = useSearchParams();
   const currentCategoryGender = searchParams.get("cat");
+  const currentCategoryType = searchParams.get("type");
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
-      const { data, error } = await supabase
+      let query = supabase
         .from("products")
         .select("*")
         .eq("category_gender", currentCategoryGender);
 
+      if (currentCategoryType) {
+        query = query.eq("category_type", currentCategoryType);
+      }
+      const { data, error } = await query;
+      console.log("zdzd" + data);
       if (error) {
         console.error(error);
         setProducts([]);
@@ -39,7 +45,7 @@ export default function ProductCard() {
     if (currentCategoryGender) {
       fetchProducts();
     }
-  }, [currentCategoryGender]);
+  }, [currentCategoryGender, currentCategoryType]);
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
 

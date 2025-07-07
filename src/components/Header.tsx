@@ -1,13 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-
-const categories = [
-  { id: "1", name: "homme" },
-  { id: "2", name: "femme" },
-  { id: "3", name: "accessoires" },
-];
+import { useState } from "react";
 
 export default function Header() {
+  const category = [
+    { name: "homme", type: ["basket", "running"] },
+    { name: "femme", type: ["basket", "running", "talon"] },
+    { name: "accessoires", type: ["semelle", "bracelet"] },
+  ];
+  const [hovered, setHovered] = useState<string | null>(null);
+
   return (
     <header className="flex h-[100px] items-center justify-between pr-[150px] pl-[150px]">
       <Image
@@ -18,14 +22,34 @@ export default function Header() {
         height={100}
       />
       <nav className="flex items-center justify-evenly">
-        {categories.map((cat) => (
-          <Link
-            key={cat.id}
-            href={`/category?cat=${cat.name}`}
-            className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
+        {category?.map((cat, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col"
+            onMouseEnter={() => setHovered(cat.name)}
+            onMouseLeave={() => setHovered(null)}
           >
-            {cat.name}
-          </Link>
+            <Link
+              href={`/category?cat=${cat.name}`}
+              className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
+            >
+              {cat.name}
+            </Link>
+            {hovered === cat.name && (
+              <div className="pl-10 w-[20rem] pt-5 absolute top-[80px] bg-white ">
+                {cat.type.map((sub, idx) => (
+                  <div
+                    className="pt-3 border-b-3 border-transparent hover:border-black transition w-max"
+                    key={idx}
+                  >
+                    <Link href={`/category?cat=${cat.name}&type=${sub}`}>
+                      {sub}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </nav>
       <Image
