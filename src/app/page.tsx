@@ -9,7 +9,7 @@ export default function Home() {
           <h1 className="text-9xl text-white font-montserrat ">
             Deviens <br /> Mythique
           </h1>
-          <button className="btn bg-white">Boutique</button>
+          <button className="btn bg-white mt-10 text-4xl p-3">Boutique</button>
         </div>
       </div>
       <section className="flex flex-col pr-[250px] pl-[250px]">
