@@ -41,7 +41,7 @@ export default function DisplayProducts() {
     <div className="grid grid-cols-3 mt-10 justify-items-center ">
       {presentationProducts.map((product, idx) => (
         <div key={idx}>
-          <div className="relative w-[30rem] h-[45rem]">
+          <div className="relative w-[25rem] h-[35rem]">
             <Image
               src={product.image ?? "/basket_violet"}
               alt={product.type}
@@ -50,21 +50,21 @@ export default function DisplayProducts() {
             ></Image>
           </div>
           <div className=" relative bottom-40 pl-7  flex flex-col">
-            <p className="text-white [text-shadow:_2px_2px_0_black] text-3xl max-w-md">
+            <p className="text-white [text-shadow:_2px_2px_0_black] text-2xl max-w-[15rem]">
               {product.description}
               {product.type} !
             </p>
 
-            <div className="pt-5">
+            <div className="pt-7">
               <Link
                 href={`/category?cat=homme&type=${product.type}`}
-                className="bg-white rounded-2xl mr-2 py-1 px-3 text-xl shadow-lg hover:shadow-2xl"
+                className="bg-white rounded-2xl mr-2 py-0.5 px-3 text-xl shadow-lg hover:shadow-2xl"
               >
                 Homme
               </Link>
               <Link
                 href={`/category?cat=femme&type=${product.type}`}
-                className="bg-white rounded-2xl py-1 px-3 text-xl shadow-lg hover:shadow-2xl"
+                className="bg-white rounded-2xl py-0.5 px-3 text-xl shadow-lg hover:shadow-2xl"
               >
                 Femme
               </Link>

@@ -13,17 +13,17 @@ export default function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <header className="flex h-[100px] items-center justify-between pr-[150px] pl-[150px]">
+    <header className="flex h-[90px] items-center justify-between pr-[150px] pl-[150px]">
       <Link href={"/"}>
         <Image
           src="/DressUp.png"
           alt="logo"
-          className="h-[100px] w-[100px]"
+          className="h-[90px] w-[90px]"
           width={100}
           height={100}
         />
       </Link>
-      <nav className="flex items-center justify-evenly">
+      <nav className="flex items-center justify-evenly relative">
         {category?.map((cat, idx) => (
           <div
             key={idx}
@@ -38,7 +38,7 @@ export default function Header() {
               {cat.name}
             </Link>
             {hovered === cat.name && (
-              <div className="pl-10 w-[20rem] pt-5 pb-5 absolute top-[80px] bg-white ">
+              <div className="pl-10 w-[20rem] pt-5 pb-5 absolute top-[80px] bg-white top-full">
                 {cat.type.map((sub, idx) => (
                   <div
                     className="pt-3 border-b-3 border-transparent hover:border-black transition w-max"
@@ -54,13 +54,7 @@ export default function Header() {
           </div>
         ))}
       </nav>
-      <Image
-        src="/panier.png"
-        alt="logo"
-        className=""
-        width={100}
-        height={100}
-      />
+      <Image src="/panier.png" alt="logo" width={100} height={100} />
     </header>
   );
 }

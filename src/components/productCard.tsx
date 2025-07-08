@@ -51,7 +51,7 @@ export default function ProductCard() {
     <>
       {products.map((product) => (
         <div className="mt-8 pl-5 pr-5" key={product.id}>
-          <div className="relative w-[35rem] h-[35rem]">
+          <div className="relative w-[27rem] h-[30rem]">
             <Image
               className=" bg-gray-500 object-cover"
               src={product.image ?? "/basket_violet"}
