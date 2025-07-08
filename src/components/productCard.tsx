@@ -47,7 +47,6 @@ export default function ProductCard() {
   }, [currentCategoryGender, currentCategoryType]);
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
-  console.log(products[0].image);
   return (
     <>
       {products.map((product) => (
@@ -55,7 +54,7 @@ export default function ProductCard() {
           <div className="relative w-[35rem] h-[35rem]">
             <Image
               className=" bg-gray-500 object-cover"
-              src={product.image ?? "/clothes.gif"}
+              src={product.image ?? "/basket_violet"}
               alt={product.name}
               fill
             />

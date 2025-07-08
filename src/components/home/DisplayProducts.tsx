@@ -43,7 +43,7 @@ export default function DisplayProducts() {
         <div key={idx}>
           <div className="relative w-[30rem] h-[45rem]">
             <Image
-              src={product.image ?? "/clothes.gif"}
+              src={product.image ?? "/basket_violet"}
               alt={product.type}
               fill
               className="object-cover"
