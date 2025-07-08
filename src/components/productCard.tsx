@@ -32,7 +32,6 @@ export default function ProductCard() {
         query = query.eq("category_type", currentCategoryType);
       }
       const { data, error } = await query;
-      console.log("zdzd" + data);
       if (error) {
         console.error(error);
         setProducts([]);
@@ -48,17 +47,17 @@ export default function ProductCard() {
   }, [currentCategoryGender, currentCategoryType]);
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
-
+  console.log(products[0].image);
   return (
     <>
       {products.map((product) => (
-        <div className="mt-8" key={product.id}>
+        <div className="mt-8 pl-5 pr-5" key={product.id}>
           <Image
-            className="h-[32rem] w-[27rem] bg-gray-500"
+            className=" bg-gray-500"
             src={product.image ?? "/clothes.gif"}
             alt={product.name}
-            width={100}
-            height={100}
+            width={432}
+            height={512}
           />
           <p className="mt-4">{product.name}</p>
           <p className="mt-2">{product.price} €</p>

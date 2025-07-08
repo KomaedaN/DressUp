@@ -14,13 +14,15 @@ export default function Header() {
 
   return (
     <header className="flex h-[100px] items-center justify-between pr-[150px] pl-[150px]">
-      <Image
-        src="/DressUp.png"
-        alt="logo"
-        className="h-[100px] w-[100px]"
-        width={100}
-        height={100}
-      />
+      <Link href={"/"}>
+        <Image
+          src="/DressUp.png"
+          alt="logo"
+          className="h-[100px] w-[100px]"
+          width={100}
+          height={100}
+        />
+      </Link>
       <nav className="flex items-center justify-evenly">
         {category?.map((cat, idx) => (
           <div
@@ -36,7 +38,7 @@ export default function Header() {
               {cat.name}
             </Link>
             {hovered === cat.name && (
-              <div className="pl-10 w-[20rem] pt-5 absolute top-[80px] bg-white ">
+              <div className="pl-10 w-[20rem] pt-5 pb-5 absolute top-[80px] bg-white ">
                 {cat.type.map((sub, idx) => (
                   <div
                     className="pt-3 border-b-3 border-transparent hover:border-black transition w-max"
