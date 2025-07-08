@@ -52,13 +52,14 @@ export default function ProductCard() {
     <>
       {products.map((product) => (
         <div className="mt-8 pl-5 pr-5" key={product.id}>
-          <Image
-            className=" bg-gray-500"
-            src={product.image ?? "/clothes.gif"}
-            alt={product.name}
-            width={432}
-            height={512}
-          />
+          <div className="relative w-[35rem] h-[35rem]">
+            <Image
+              className=" bg-gray-500 object-cover"
+              src={product.image ?? "/clothes.gif"}
+              alt={product.name}
+              fill
+            />
+          </div>
           <p className="mt-4">{product.name}</p>
           <p className="mt-2">{product.price} €</p>
         </div>

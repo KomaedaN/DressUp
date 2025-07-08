@@ -1,4 +1,5 @@
 import DisplayProducts from "@/components/home/DisplayProducts";
+import Partners from "@/components/home/Partners";
 
 export default function Home() {
   return (
@@ -11,10 +12,10 @@ export default function Home() {
           <button className="btn bg-white">Boutique</button>
         </div>
       </div>
-      <div className="flex flex-col pr-[250px] pl-[250px]">
+      <section className="flex flex-col pr-[250px] pl-[250px]">
         <DisplayProducts />
-        <div className="bg-gray-500 h-[50rem] mb-5"></div>
-      </div>
+        <Partners />
+      </section>
     </main>
   );
 }
