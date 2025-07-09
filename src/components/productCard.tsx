@@ -15,7 +15,7 @@ type Product = {
 
 export default function ProductCard() {
   const searchParams = useSearchParams();
-  const currentCategoryGender = searchParams.get("cat");
+  const currentCategoryGender = searchParams.get("cat") ?? "";
   const currentCategoryType = searchParams.get("type");
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -23,11 +23,11 @@ export default function ProductCard() {
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
-      let query = supabase
-        .from("products")
-        .select("*")
-        .eq("category_gender", currentCategoryGender);
+      let query = supabase.from("products").select("*");
 
+      if (currentCategoryGender) {
+        query = query.eq("category_gender", currentCategoryGender);
+      }
       if (currentCategoryType) {
         query = query.eq("category_type", currentCategoryType);
       }
@@ -40,10 +40,7 @@ export default function ProductCard() {
       }
       setLoading(false);
     }
-
-    if (currentCategoryGender) {
-      fetchProducts();
-    }
+    fetchProducts();
   }, [currentCategoryGender, currentCategoryType]);
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
@@ -57,6 +54,8 @@ export default function ProductCard() {
               src={product.image ?? "/basket_violet"}
               alt={product.name}
               fill
+              sizes="(max-width: 500px) 100vw, 480px"
+              priority
             />
           </div>
           <p className="mt-4">{product.name}</p>

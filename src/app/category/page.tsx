@@ -1,4 +1,4 @@
-import FilterContent from "@/components/FilterContent";
+import FilterContent from "@/components/products/FilterContent";
 import BannerDetail from "@/components/BannerDetail";
 import ProductCard from "@/components/productCard";
 import { Suspense } from "react";
@@ -13,7 +13,9 @@ export default function CategoryPage() {
         <Suspense>
           <ProductCard />
         </Suspense>
-        <FilterContent />
+        <Suspense>
+          <FilterContent />
+        </Suspense>
       </section>
     </section>
   );

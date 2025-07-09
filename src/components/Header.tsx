@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Header() {
   const category = [
     { name: "homme", type: ["basket", "running"] },
-    { name: "femme", type: ["basket", "running", "talon"] },
+    { name: "femme", type: ["basket", "running"] },
     { name: "accessoires", type: ["semelle", "bracelet"] },
   ];
   const [hovered, setHovered] = useState<string | null>(null);
@@ -21,6 +21,7 @@ export default function Header() {
           className="h-[90px] w-[90px]"
           width={100}
           height={100}
+          priority
         />
       </Link>
       <nav className="flex items-center justify-evenly relative">
@@ -38,7 +39,7 @@ export default function Header() {
               {cat.name}
             </Link>
             {hovered === cat.name && (
-              <div className="pl-10 w-[20rem] pt-5 pb-5 absolute top-[80px] bg-white top-full">
+              <div className="pl-10 w-[20rem] pt-5 pb-5 absolute top-[80px] bg-white top-full rounded z-10">
                 {cat.type.map((sub, idx) => (
                   <div
                     className="pt-3 border-b-3 border-transparent hover:border-black transition w-max"
@@ -54,7 +55,14 @@ export default function Header() {
           </div>
         ))}
       </nav>
-      <Image src="/panier.png" alt="logo" width={100} height={100} />
+      <Image
+        src="/panier.png"
+        alt="logo"
+        width={100}
+        height={100}
+        sizes="(max-width: 100px) 100vw, 100px"
+        priority
+      />
     </header>
   );
 }

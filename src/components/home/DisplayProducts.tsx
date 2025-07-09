@@ -38,23 +38,28 @@ export default function DisplayProducts() {
   if (!presentationProducts.length) return <p>Aucun produit trouvé.</p>;
 
   return (
-    <div className="grid grid-cols-3 mt-10 justify-items-center ">
+    <div className="grid grid-cols-3 mt-17 justify-items-center ">
       {presentationProducts.map((product, idx) => (
         <div key={idx}>
-          <div className="relative w-[25rem] h-[35rem]">
-            <Image
-              src={product.image ?? "/basket_violet"}
-              alt={product.type}
-              fill
-              className="object-cover"
-            ></Image>
-          </div>
+          <Link href={`/category?type=${product.type}`}>
+            <div className="relative w-[25rem] h-[35rem]">
+              <Image
+                src={product.image ?? "/basket_violet"}
+                alt={product.type}
+                fill
+                className="object-cover"
+                sizes="(max-width: 500px) 100vw, 480px"
+                priority
+              ></Image>
+            </div>
+          </Link>
           <div className=" relative bottom-40 pl-7  flex flex-col">
-            <p className="text-white [text-shadow:_2px_2px_0_black] text-2xl max-w-[15rem]">
-              {product.description}
-              {product.type} !
-            </p>
-
+            <Link href={`/category?type=${product.type}`}>
+              <p className="text-white [text-shadow:_2px_2px_0_black] text-2xl max-w-[15rem]">
+                {product.description}
+                {product.type} !
+              </p>
+            </Link>
             <div className="pt-7">
               <Link
                 href={`/category?cat=homme&type=${product.type}`}
