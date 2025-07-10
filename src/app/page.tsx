@@ -1,5 +1,6 @@
 import DisplayProducts from "@/components/home/DisplayProducts";
 import Partners from "@/components/home/Partners";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,10 +16,15 @@ export default function Home() {
           <source src="/home-page-video.mp4" type="video/mp4" />
         </video>
         <div className="pb-35 pr-40 absolute">
-          <h1 className="text-8xl text-white font-montserrat">
+          <h1 className="text-8xl text-white font-montserrat font-extrabold mb-12 cursor-default">
             Deviens <br /> Mythique
           </h1>
-          <button className="btn bg-white mt-12 text-3xl p-3">Boutique</button>
+          <Link
+            href={"/category"}
+            className="btn bg-white text-3xl p-3 font-bold"
+          >
+            Boutique
+          </Link>
         </div>
       </div>
       <section className="flex flex-col pr-[250px] pl-[250px]">

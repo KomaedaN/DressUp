@@ -34,7 +34,7 @@ export default function Header() {
           >
             <Link
               href={`/category?cat=${cat.name.toLowerCase()}`}
-              className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
+              className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3 font-semibold"
             >
               {cat.name}
             </Link>
