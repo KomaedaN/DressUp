@@ -3,7 +3,6 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
-import type { PostgrestFilterBuilder } from "@supabase/postgrest-js";
 
 type Product = {
   id: number;
@@ -20,7 +19,7 @@ export default function ProductCard() {
   const currentCategoryGender = params.getAll("cat");
   const currentCategoryType = params.getAll("type");
   const currentColor = params.getAll("color");
-  let query = supabase.from("products").select("*");
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const filters = [
@@ -29,19 +28,15 @@ export default function ProductCard() {
     { field: "color", values: currentColor },
   ];
 
-  function applyFilter(fieldName: string, values: string[]) {
-    if (values.length) {
-      return query.in(fieldName, values);
-    }
-    return query;
-  }
-
   useEffect(() => {
     async function fetchProducts() {
+      let query = supabase.from("products").select("*");
       setLoading(true);
 
       filters.forEach((e) => {
-        query = applyFilter(e.field, e.values);
+        if (e.values.length) {
+          query = query.in(e.field, e.values);
+        }
       });
 
       const { data, error } = await query;
@@ -59,8 +54,10 @@ export default function ProductCard() {
     currentCategoryType.join(","),
     currentColor.join(","),
   ]);
+
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
+
   return (
     <>
       {products.map((product) => (
