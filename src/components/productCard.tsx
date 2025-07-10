@@ -11,26 +11,39 @@ type Product = {
   category_type: string;
   price: number;
   image?: string;
+  color?: string;
 };
 
 export default function ProductCard() {
-  const searchParams = useSearchParams();
-  const currentCategoryGender = searchParams.get("cat") ?? "";
-  const currentCategoryType = searchParams.get("type");
+  const params = useSearchParams();
+  const currentCategoryGender = params.getAll("cat");
+  const currentCategoryType = params.getAll("type");
+  const currentColor = params.getAll("color");
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const filters = [
+    { field: "category_gender", values: currentCategoryGender },
+    { field: "category_type", values: currentCategoryType },
+    { field: "color", values: currentColor },
+  ];
+
+  function applyFilter(query: any, fieldName: string, values: string[]) {
+    if (values.length) {
+      return query.in(fieldName, values);
+    }
+    return query;
+  }
+
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true);
       let query = supabase.from("products").select("*");
 
-      if (currentCategoryGender) {
-        query = query.eq("category_gender", currentCategoryGender);
-      }
-      if (currentCategoryType) {
-        query = query.eq("category_type", currentCategoryType);
-      }
+      filters.forEach((e) => {
+        query = applyFilter(query, e.field, e.values);
+      });
+
       const { data, error } = await query;
       if (error) {
         console.error(error);
@@ -41,7 +54,11 @@ export default function ProductCard() {
       setLoading(false);
     }
     fetchProducts();
-  }, [currentCategoryGender, currentCategoryType]);
+  }, [
+    currentCategoryGender.join(","),
+    currentCategoryType.join(","),
+    currentColor.join(","),
+  ]);
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
   return (

@@ -16,7 +16,7 @@ export default function Header() {
     <header className="flex h-[90px] items-center justify-between pr-[150px] pl-[150px]">
       <Link href={"/"}>
         <Image
-          src="/DressUp.png"
+          src="/dress-up.png"
           alt="logo"
           className="h-[90px] w-[90px]"
           width={100}

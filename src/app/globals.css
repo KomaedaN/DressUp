@@ -3,3 +3,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.color_orange {
+  background-color: orange;
+}
+
+.color_vert {
+  background-color: green;
+}
+
+.color_jaune {
+  background-color: yellow;
+}
+.color_rose {
+  background-color: pink;
+}
+.color_violet {
+  background-color: purple;
+}
+.color_bleu {
+  background-color: blue;
+}
+.color_blanc {
+  background-color: white;
+}
+.color_noir {
+  background-color: black;
+}
+.color_rouge {
+  background-color: red;
+}

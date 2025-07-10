@@ -3,20 +3,52 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+{
+  /* importer les valeurs ici à l'ajout d'un filtre dans la bdd */
+}
+const GENDER = ["homme", "femme"];
+const TYPE = [
+  "basket",
+  "running",
+  "bottes",
+  "football",
+  "claquettes",
+  "escalade",
+];
+const COLOR = [
+  "orange",
+  "vert",
+  "rouge",
+  "violet",
+  "bleu",
+  "jaune",
+  "rose",
+  "noir",
+  "blanc",
+];
+
 export default function FilterContent() {
   const [showFilters, setShowFilters] = useState(false);
   const getParams = useSearchParams();
   const router = useRouter();
+  const allParams = useSearchParams();
+  const params = new URLSearchParams(allParams.toString());
 
-  function updateFilter(value: string) {
-    const params = new URLSearchParams(getParams.toString());
-    const gender = getParams.get("cat") ?? "";
-    if (gender === value) {
-      params.delete("cat");
+  function updateFilterGender(paramName: string, value: string) {
+    let updated: string[];
+    const selectedParam = getParams.getAll(paramName);
+    if (selectedParam.includes(value)) {
+      updated = selectedParam.filter((g) => g !== value);
     } else {
-      params.set("cat", value);
+      updated = [...selectedParam, value];
     }
+    params.delete(paramName);
+    updated.forEach((v) => params.append(paramName, v));
     router.push(`/category?${params.toString()}`);
+  }
+
+  function isActive(value: string) {
+    let currentValue = value;
   }
   return (
     <>
@@ -47,18 +79,35 @@ export default function FilterContent() {
               </button>
 
               <div className="flex justify-center gap-x-8">
-                <button
-                  onClick={() => updateFilter("homme")}
-                  className={"bg-gray-200 px-4 py-1 rounded cursor-pointer"}
-                >
-                  Homme
-                </button>
-                <button
-                  onClick={() => updateFilter("femme")}
-                  className={"bg-gray-200 px-4 py-1 rounded cursor-pointer"}
-                >
-                  Femme
-                </button>
+                {GENDER.map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => updateFilterGender("cat", `${value}`)}
+                    className={"bg-gray-200 px-4 py-1 rounded cursor-pointer"}
+                  >
+                    {value}
+                  </button>
+                ))}
+              </div>
+              <div className="grid justify-center gap-x-8 grid-cols-3">
+                {TYPE.map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => updateFilterGender("type", `${value}`)}
+                    className={"bg-gray-200 px-4 py-1 rounded cursor-pointer"}
+                  >
+                    {value}
+                  </button>
+                ))}
+              </div>
+              <div className="grid justify-center gap-x-8 grid-cols-4">
+                {COLOR.map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => updateFilterGender("color", `${value}`)}
+                    className={`color_${value} px-4 py-1 rounded cursor-pointer h-[40px] w-[40px] border-3 border-white hover:border-black`}
+                  ></button>
+                ))}
               </div>
             </div>
           </>
