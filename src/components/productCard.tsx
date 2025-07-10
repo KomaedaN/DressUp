@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
+import type { PostgrestFilterBuilder } from "@supabase/postgrest-js";
 
 type Product = {
   id: number;
@@ -28,7 +29,11 @@ export default function ProductCard() {
     { field: "color", values: currentColor },
   ];
 
-  function applyFilter(query: any, fieldName: string, values: string[]) {
+  function applyFilter(
+    query: PostgrestFilterBuilder<any, any, any>,
+    fieldName: string,
+    values: string[]
+  ) {
     if (values.length) {
       return query.in(fieldName, values);
     }
