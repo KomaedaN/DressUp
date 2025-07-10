@@ -6,9 +6,9 @@ import { useState } from "react";
 
 export default function Header() {
   const category = [
-    { name: "homme", type: ["basket", "running"] },
-    { name: "femme", type: ["basket", "running"] },
-    { name: "accessoires", type: ["semelle", "bracelet"] },
+    { name: "Homme", type: ["Basket", "Running"] },
+    { name: "Femme", type: ["Basket", "Running"] },
+    { name: "Accessoires", type: ["Semelle", "Bracelet"] },
   ];
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ export default function Header() {
             onMouseLeave={() => setHovered(null)}
           >
             <Link
-              href={`/category?cat=${cat.name}`}
+              href={`/category?cat=${cat.name.toLowerCase()}`}
               className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
             >
               {cat.name}
@@ -45,7 +45,9 @@ export default function Header() {
                     className="pt-3 border-b-3 border-transparent hover:border-black transition w-max"
                     key={idx}
                   >
-                    <Link href={`/category?cat=${cat.name}&type=${sub}`}>
+                    <Link
+                      href={`/category?cat=${cat.name.toLowerCase()}&type=${sub.toLowerCase()}`}
+                    >
                       {sub}
                     </Link>
                   </div>

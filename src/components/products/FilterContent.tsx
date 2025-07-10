@@ -47,9 +47,6 @@ export default function FilterContent() {
     router.push(`/category?${params.toString()}`);
   }
 
-  function isActive(value: string) {
-    let currentValue = value;
-  }
   return (
     <>
       <section>
