@@ -6,8 +6,8 @@ import { useState } from "react";
 
 export default function Header() {
   const category = [
-    { name: "Homme", type: ["Basket", "Running"] },
-    { name: "Femme", type: ["Basket", "Running"] },
+    { name: "Homme", type: ["Baskets", "Running", "Football", "Escalade"] },
+    { name: "Femme", type: ["Baskets", "Running", "Football", "Escalade"] },
     { name: "Accessoires", type: ["Semelle", "Bracelet"] },
   ];
   const [hovered, setHovered] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export default function Header() {
           >
             <Link
               href={`/category?cat=${cat.name.toLowerCase()}`}
-              className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3 font-semibold"
+              className="ml-10 mr-10 text-2xl border-b-3 border-transparent hover:border-black transition pb-3 pt-3"
             >
               {cat.name}
             </Link>
@@ -60,9 +60,9 @@ export default function Header() {
       <Image
         src="/panier.png"
         alt="logo"
-        width={100}
-        height={100}
-        sizes="(max-width: 100px) 100vw, 100px"
+        width={48}
+        height={48}
+        sizes="(max-width: 100px) 100%, 100px"
         priority
       />
     </header>

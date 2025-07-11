@@ -10,7 +10,7 @@ export default function Partners() {
         sizes="(max-width: 800px) 100vw, 800px"
         priority
       />
-      <h2 className="text-7xl text-white absolute bottom-15 right-15 font-extrabold ">
+      <h2 className="text-7xl text-white absolute bottom-15 right-15 font-extrabold object-cover">
         Rejoins nos <br />
         Partenaires
       </h2>

@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 }
 const GENDER = ["homme", "femme"];
 const TYPE = [
-  "basket",
+  "baskets",
   "running",
   "bottes",
   "football",
