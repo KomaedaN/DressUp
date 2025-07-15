@@ -50,7 +50,7 @@ export default function FilterContent() {
   }
 
 
-  function handleSelect(value: string, selected: boolean) {
+  function handleSelect(value: string) {
 setColors(prev => 
   prev.map(c =>
     c.name === value
@@ -115,7 +115,7 @@ setColors(prev =>
                 {colors.map((value) => (
                   
                   <label key={value.name}>
-                    <input type="checkbox" name={value.name} value={value.name} checked={value.selected} onChange={() => handleSelect(value.name, value.selected)}/>
+                    <input type="checkbox" name={value.name} value={value.name} checked={value.selected} onChange={() => handleSelect(value.name)}/>
                     <span className={`color_${value.name} px-4 py-1 rounded cursor-pointer h-[40px] w-[40px] border-3 border-white hover:border-black`}></span>
                   </label>
                   
