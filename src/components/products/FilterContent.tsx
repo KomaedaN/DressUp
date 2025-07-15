@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { div, label } from "framer-motion/client";
 
 {
   /* importer les valeurs ici à l'ajout d'un filtre dans la bdd */
@@ -16,19 +17,20 @@ const TYPE = [
   "escalade",
 ];
 const COLOR = [
-  "orange",
-  "vert",
-  "rouge",
-  "violet",
-  "bleu",
-  "jaune",
-  "rose",
-  "noir",
-  "blanc",
+  {name: "orange", selected: false},
+  {name: "vert", selected: false},
+  {name: "rouge", selected: false},
+  {name: "violet", selected: false},
+  {name: "bleu", selected: false},
+  {name: "jaune", selected: false},
+  {name: "rose", selected: false},
+  {name: "noir", selected: false},
+  {name: "blanc", selected: false},
 ];
 
 export default function FilterContent() {
   const [showFilters, setShowFilters] = useState(false);
+  const [colors, setColors] = useState(COLOR);
   const getParams = useSearchParams();
   const router = useRouter();
   const allParams = useSearchParams();
@@ -47,13 +49,24 @@ export default function FilterContent() {
     router.push(`/category?${params.toString()}`);
   }
 
+
+  function handleSelect(value: string, selected: boolean) {
+setColors(prev => 
+  prev.map(c =>
+    c.name === value
+      ? { ...c, selected: !c.selected }
+      : c
+  )
+  
+); updateFilterGender("color", value);
+  }
   return (
     <>
       <section>
         {!showFilters && (
           <button
             onClick={() => setShowFilters((prev) => !prev)}
-            className=" text-white bg-gray-500 absolute top-[100px] right-[150px] cursor-pointer"
+            className="absolute top-[93px] right-[150px] cursor-pointer bg-white p-[10px] font-bold rounded hover:scale-110 "
           >
             Afficher les Filtres
           </button>
@@ -63,14 +76,14 @@ export default function FilterContent() {
           <>
             {/* ajout d'un fond noir sur la page */}
             <div
-              className="h-[100%] w-[100%] fixed bg-black left-[0] top-[0] opacity-60"
+              className="h-[100%] w-[100%] fixed bg-black left-[0] top-[0] opacity-60 "
               onClick={() => setShowFilters((prev) => !prev)}
             ></div>
 
             <div className=" w-[30rem] bg-white fixed top-[0] right-[0] h-screen b flex flex-col">
               <button
                 onClick={() => setShowFilters((prev) => !prev)}
-                className=" cursor-pointer"
+                className=" cursor-pointer p-[10px] bg-black font-bold text-white text-xl mb-10"
               >
                 Cacher les filtres
               </button>
@@ -97,13 +110,16 @@ export default function FilterContent() {
                   </button>
                 ))}
               </div>
-              <div className="grid justify-center gap-x-8 grid-cols-4">
-                {COLOR.map((value) => (
-                  <button
-                    key={value}
-                    onClick={() => updateFilterGender("color", `${value}`)}
-                    className={`color_${value} px-4 py-1 rounded cursor-pointer h-[40px] w-[40px] border-3 border-white hover:border-black`}
-                  ></button>
+
+              <div className="grid justify-center gap-x-8 grid-cols-5 m-5">
+                {colors.map((value) => (
+                  
+                  <label key={value.name}>
+                    <input type="checkbox" name={value.name} value={value.name} checked={value.selected} onChange={() => handleSelect(value.name, value.selected)}/>
+                    <span className={`color_${value.name} px-4 py-1 rounded cursor-pointer h-[40px] w-[40px] border-3 border-white hover:border-black`}></span>
+                  </label>
+                  
+                
                 ))}
               </div>
             </div>
