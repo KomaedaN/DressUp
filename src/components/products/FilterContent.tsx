@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { div, label } from "framer-motion/client";
+
 
 {
   /* importer les valeurs ici à l'ajout d'un filtre dans la bdd */
