@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
+import Image from "next/image";
 
 {
   /* importer les valeurs ici à l'ajout d'un filtre dans la bdd */
@@ -29,6 +29,9 @@ const COLOR = [
 ];
 
 export default function FilterContent() {
+  const [showGenderMenu, setShowGenderMenu] = useState(false);
+  const [showTypeMenu, setShowTypeMenu] = useState(false);
+  const [showColorMenu, setShowColorMenu] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [colors, setColors] = useState(COLOR);
   const getParams = useSearchParams();
@@ -80,16 +83,24 @@ setColors(prev =>
               onClick={() => setShowFilters((prev) => !prev)}
             ></div>
 
-            <div className=" w-[30rem] bg-white fixed top-[0] right-[0] h-screen b flex flex-col">
+            <div className=" w-[30rem] bg-white fixed top-[0] right-[0] h-screen b flex flex-col p-5">
               <button
                 onClick={() => setShowFilters((prev) => !prev)}
-                className=" cursor-pointer p-[10px] bg-black font-bold text-white text-xl mb-10"
+                className=" cursor-pointer p-[10px] bg-black font-bold text-white text-xl mb-10 hover:scale-105"
               >
                 Cacher les filtres
               </button>
 
-              <div className="flex justify-center gap-x-8">
-                {GENDER.map((value) => (
+              <div className="flex justify-center flex-col gap-x-8 mt-6">
+                <div className="flex items-center justify-between cursor-pointer border-b" onClick={() => setShowGenderMenu((prev) => !prev)}>
+                  <p>SEXE</p> 
+                  <Image src={"/filtre-arrow.png"} alt="filter arrow" width={30} height={30} className={`transition-transform duration-300 ${
+      showGenderMenu ? "rotate-0" : "rotate-180"
+    }`}/>
+                </div>
+                {showGenderMenu && (
+                  <div>
+                    {GENDER.map((value) => (
                   <button
                     key={value}
                     onClick={() => updateFilterGender("cat", `${value}`)}
@@ -98,9 +109,19 @@ setColors(prev =>
                     {value}
                   </button>
                 ))}
+                  </div>
+                )}
+                
               </div>
-              <div className="grid justify-center gap-x-8 grid-cols-3">
-                {TYPE.map((value) => (
+              <div className="flex justify-center flex-col gap-x-8 grid-cols-3 mt-6">
+                <div className="flex items-center justify-between cursor-pointer border-b" onClick={() => setShowTypeMenu((prev) => !prev)}>
+                  <p>TYPE</p> 
+                  <Image src={"/filtre-arrow.png"} alt="filter arrow" width={30} height={30} className={`transition-transform duration-300 ${
+      showTypeMenu ? "rotate-0" : "rotate-180"
+    }`}/>
+                </div>
+                {showTypeMenu && (
+                  <div>{TYPE.map((value) => (
                   <button
                     key={value}
                     onClick={() => updateFilterGender("type", `${value}`)}
@@ -108,11 +129,21 @@ setColors(prev =>
                   >
                     {value}
                   </button>
-                ))}
+                ))}</div>
+                )}
+                
               </div>
 
-              <div className="grid justify-center gap-x-8 grid-cols-5 m-5">
-                {colors.map((value) => (
+              <div className="flex justify-center flex-col gap-x-8 mt-6">
+                <div className="flex items-center justify-between cursor-pointer border-b" onClick={() => setShowColorMenu((prev) => !prev)}>
+                  <p>COLOR</p> 
+                  <Image src={"/filtre-arrow.png"} alt="filter arrow" width={30} height={30} className={`transition-transform duration-300 ${
+      showColorMenu ? "rotate-0" : "rotate-180"
+    }`}/>
+                </div>
+                {showColorMenu && (
+                  <div>
+                    {colors.map((value) => (
                   
                   <label key={value.name}>
                     <input type="checkbox" name={value.name} value={value.name} checked={value.selected} onChange={() => handleSelect(value.name)}/>
@@ -120,7 +151,9 @@ setColors(prev =>
                   </label>
                   
                 
-                ))}
+                ))}</div>
+                )}
+                
               </div>
             </div>
           </>
