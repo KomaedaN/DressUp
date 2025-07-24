@@ -61,19 +61,20 @@ export default function ProductCard() {
   return (
     <>
       {products.map((product) => (
-        <div className="mt-8 pl-5 pr-5" key={product.id}>
-          <div className="relative w-[27rem] h-[30rem]">
+        <div className="mt-8 pl-5 pr-5 w-[100%]" key={product.id}>
+          <div className="relative h-auto">
             <Image
-              className=" bg-gray-500 object-cover"
+              className=" bg-gray-500 object-cover h-auto w-full"
               src={product.image ?? "/basket_violet"}
               alt={product.name}
-              fill
+              width={500}
+              height={500}
               sizes="(max-width: 500px) 100vw, 480px"
               priority
             />
           </div>
-          <p className="mt-4">{product.name}</p>
-          <p className="mt-2">{product.price} €</p>
+          <p className="mt-3 font-bold">{product.name}</p>
+          <p>{product.price} €</p>
         </div>
       ))}
     </>
