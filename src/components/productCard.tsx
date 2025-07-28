@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -12,6 +13,7 @@ type Product = {
   price: number;
   image?: string;
   color?: string;
+  slug: string;
 };
 
 export default function ProductCard() {
@@ -61,10 +63,14 @@ export default function ProductCard() {
   return (
     <>
       {products.map((product) => (
-        <div className="mt-8 pl-5 pr-5 w-[100%]" key={product.id}>
+        <Link
+          className="mt-8 w-[100%]"
+          key={product.id}
+          href={`/article/${product.slug}`}
+        >
           <div className="relative h-auto">
             <Image
-              className=" bg-gray-500 object-cover h-auto w-full"
+              className="object-cover h-auto w-full"
               src={product.image ?? "/basket_violet"}
               alt={product.name}
               width={500}
@@ -75,7 +81,7 @@ export default function ProductCard() {
           </div>
           <p className="mt-3 font-bold">{product.name}</p>
           <p>{product.price} €</p>
-        </div>
+        </Link>
       ))}
     </>
   );

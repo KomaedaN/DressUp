@@ -9,7 +9,7 @@ export default function CategoryPage() {
       <Suspense>
         <BannerDetail />
       </Suspense>
-      <section className="grid grid-cols-3 justify-items-center pl-[50px] pr-[50px] justify-center">
+      <section className="grid grid-cols-3 justify-items-center pl-[50px] pr-[50px] justify-center gap-x-7">
         <Suspense>
           <ProductCard />
         </Suspense>
