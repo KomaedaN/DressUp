@@ -24,14 +24,15 @@ export default function ProductCard() {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const filters = [
-    { field: "category_gender", values: currentCategoryGender },
-    { field: "category_type", values: currentCategoryType },
-    { field: "color", values: currentColor },
-  ];
 
   useEffect(() => {
     async function fetchProducts() {
+      const filters = [
+        { field: "category_gender", values: currentCategoryGender },
+        { field: "category_type", values: currentCategoryType },
+        { field: "color", values: currentColor },
+      ];
+
       let query = supabase.from("products").select("*");
       setLoading(true);
 

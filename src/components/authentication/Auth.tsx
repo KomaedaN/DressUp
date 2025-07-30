@@ -13,13 +13,13 @@ export default function LoginSignup() {
     e.preventDefault();
 
     if (isLogin) {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
       setMessage(error ? error.message : "Connecté !");
     } else {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
       });
