@@ -13,12 +13,12 @@ export default function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [menu, setMenu] = useState(false);
   return (
-    <header className="flex h-[90px] items-center justify-between lg:pr-[150px] lg:pl-[150px] pr-[50px] pl-[50px]">
+    <header className="flex sm:h-[90px] h-[70px] items-center justify-between lg:pr-[150px] lg:pl-[150px] pr-[50px] pl-[50px]">
       <Link href={"/"} className="xl:mr-10 lg:mr-5">
         <Image
           src="/dress-up.png"
           alt="logo"
-          className="h-[90px] w-[90px] min-h-[90px] min-w-[90px]"
+          className="sm:h-[90px] sm:w-[90px] h-[65px] w-[65px] min-h-[65px] min-w-[65px]"
           width={100}
           height={100}
           priority
@@ -71,7 +71,7 @@ export default function Header() {
         </Link>
         <Link href={"/"}>
           <Image
-            className="min-h-[55px] min-w-[55px]"
+            className="min-h-[35px] min-w-[35px] sm:h-[55px] sm:w-[55px] h-[35px] w-[35px]"
             src="/panier.png"
             alt="logo panier"
             width={55}
@@ -86,7 +86,7 @@ export default function Header() {
 
       <Image
         onClick={() => setMenu(true)}
-        className="min-h-[50px] min-w-[50px] md:hidden flex cursor-pointer"
+        className="min-h-[35px] min-w-[35px] sm:h-[55px] sm:w-[55px] h-[35px] w-[35px] md:hidden flex cursor-pointer "
         src="/menu.png"
         alt="logo panier"
         width={50}
