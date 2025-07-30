@@ -18,8 +18,8 @@ export default function Home() {
           >
             <source src="/home-page-video.mp4" type="video/mp4" />
           </video>
-          <div className="pb-35 pr-40 absolute">
-            <h1 className="text-8xl text-white font-montserrat font-extrabold mb-12 cursor-default">
+          <div className="mb:pb-35 mb:pr-40 pb-40 pr-5 absolute">
+            <h1 className="sm:text-8xl text-6xl text-white font-montserrat font-extrabold mb-12 cursor-default">
               Deviens <br /> Mythique
             </h1>
             <Link
@@ -30,7 +30,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <section className="flex flex-col pr-[250px] pl-[250px]">
+        <section className="flex flex-col 2xl:pr-[150px] 2xl:pl-[150px]">
           <DisplayProducts />
           <Partners />
         </section>

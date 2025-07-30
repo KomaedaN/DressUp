@@ -12,7 +12,6 @@ export default function Header() {
   ];
   const [hovered, setHovered] = useState<string | null>(null);
   const [menu, setMenu] = useState(false);
-
   return (
     <header className="flex h-[90px] items-center justify-between lg:pr-[150px] lg:pl-[150px] pr-[50px] pl-[50px]">
       <Link href={"/"} className="xl:mr-10 lg:mr-5">
@@ -58,6 +57,7 @@ export default function Header() {
           </div>
         ))}
       </nav>
+
       <div className="md:flex hidden">
         <Link href={"/authentication"} className="xl:mr-10 lg:mr-5">
           <Image
@@ -83,9 +83,10 @@ export default function Header() {
       </div>
 
       {/* responsive md< */}
+
       <Image
         onClick={() => setMenu(true)}
-        className="min-h-[50px] min-w-[50px]"
+        className="min-h-[50px] min-w-[50px] md:hidden flex cursor-pointer"
         src="/menu.png"
         alt="logo panier"
         width={50}
@@ -99,16 +100,70 @@ export default function Header() {
           menu ? " translate-x-0" : " translate-x-full "
         }`}
       >
-        <Image
-          onClick={() => setMenu(false)}
-          className="min-h-[50px] min-w-[50px]"
-          src="/close.png"
-          alt="logo panier"
-          width={50}
-          height={50}
-          sizes="(max-width: 100px) 100%, 100px"
-          priority
-        />
+        <div className="flex justify-around items-center h-[100px] border-b">
+          <Link href={"/authentication"} className="xl:mr-10 lg:mr-5">
+            <Image
+              className="min-h-[55px] min-w-[55px]"
+              src="/profil.png"
+              alt="logo profil"
+              width={55}
+              height={55}
+              priority
+            />
+          </Link>
+          <Link href={"/"}>
+            <Image
+              className="min-h-[55px] min-w-[55px]"
+              src="/panier.png"
+              alt="logo panier"
+              width={55}
+              height={55}
+              sizes="(max-width: 100px) 100%, 100px"
+              priority
+            />
+          </Link>
+
+          <Image
+            onClick={() => setMenu(false)}
+            className="min-h-[50px] min-w-[50px] cursor-pointer"
+            src="/close.png"
+            alt="logo panier"
+            width={50}
+            height={50}
+            sizes="(max-width: 100px) 100%, 100px"
+            priority
+          />
+        </div>
+
+        <div className="mt-8">
+          <nav className=" items-center  relative pl-10 pr-10">
+            {category?.map((cat, idx) => (
+              <div key={idx} className="flex flex-col">
+                <Link
+                  href={`/category?cat=${cat.name.toLowerCase()}`}
+                  className="text-2xl border-b-3 hover:border-black transition pb-3 pt-3"
+                >
+                  {cat.name}
+                </Link>
+
+                <div className="pt-3 pb-3">
+                  {cat.type.map((sub, idx) => (
+                    <div
+                      className="pt-5 hover:border-black transition  border-b border-gray-300"
+                      key={idx}
+                    >
+                      <Link
+                        href={`/category?cat=${cat.name.toLowerCase()}&type=${sub.toLowerCase()}`}
+                      >
+                        {sub}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </nav>
+        </div>
       </div>
     </header>
   );
