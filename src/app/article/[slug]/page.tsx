@@ -1,5 +1,6 @@
 import ArticleDetail from "@/components/article/ArticleDetail";
 import MoreArticle from "@/components/article/MoreArticle";
+import Header from "@/components/Header";
 import { supabase } from "@/utils/supabaseClient";
 
 type Props = {
@@ -30,6 +31,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <Header />
       <section className="pt-15 pl-6 pr-6 border-t grid grid-cols-2 pl-[100px] gap-x-25">
         <ArticleDetail product={product} />
       </section>
