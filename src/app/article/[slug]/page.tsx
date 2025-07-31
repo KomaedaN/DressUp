@@ -27,12 +27,12 @@ export default async function ArticlePage({ params }: Props) {
     .eq("category_type", product.category_type)
     .eq("category_gender", product.category_gender)
     .neq("slug", slug)
-    .limit(10);
+    .limit(5);
 
   return (
     <>
       <Header />
-      <section className="pt-15 pl-6 pr-6 border-t grid grid-cols-2 pl-[100px] gap-x-25">
+      <section className="lg:pt-15 lg:pl-6 lg:pr-6 border-t grid lg:grid-cols-2 md:grid-cols-[1.8fr_1fr] grid-cols-1 lg:pl-[100px] lg:gap-x-25 gap-x-2 justify-items-center">
         <ArticleDetail product={product} />
       </section>
       <section className="pl-20 pr-20 flex flex-col items-center mb-10">

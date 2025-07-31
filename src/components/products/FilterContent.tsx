@@ -69,7 +69,7 @@ export default function FilterContent() {
         {!showFilters && (
           <button
             onClick={() => setShowFilters((prev) => !prev)}
-            className="absolute top-[93px] right-[150px] cursor-pointer bg-white p-[10px] font-bold rounded hover:scale-110 "
+            className="absolute sm:top-[93px] top-[73px] sm:right-[150px] right-[33%] cursor-pointer bg-white p-[10px] font-bold rounded hover:scale-110 "
           >
             Afficher les Filtres
           </button>
@@ -83,7 +83,7 @@ export default function FilterContent() {
               onClick={() => setShowFilters((prev) => !prev)}
             ></div>
 
-            <div className=" w-[30rem] bg-white fixed top-[0] right-[0] h-screen b flex flex-col p-5 scrollbar-hide overflow-auto">
+            <div className="w-full sm:w-[30rem] bg-white fixed top-[0] right-[0] h-screen b flex flex-col p-5 scrollbar-hide overflow-auto">
               <button
                 onClick={() => setShowFilters((prev) => !prev)}
                 className=" cursor-pointer p-[10px] bg-black font-bold text-white text-xl mb-10 hover:scale-105"

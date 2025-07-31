@@ -8,13 +8,13 @@ export default function Home() {
     <>
       <Header />
       <main className="w-full h-full">
-        <div className="h-[calc(100vh-90px)] flex flex-col-reverse items-end">
+        <div className="sm:h-[calc(100vh-90px)] h-[calc(100vh-70px)] flex flex-col-reverse items-end">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="h-[calc(100vh-90px)] w-full object-cover"
+            className="sm:h-[calc(100vh-90px)] h-[calc(100vh-70px)] w-full object-cover"
           >
             <source src="/home-page-video.mp4" type="video/mp4" />
           </video>
