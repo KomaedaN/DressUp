@@ -12,7 +12,7 @@ export default function CategoryPage() {
         <Suspense>
           <BannerDetail />
         </Suspense>
-        <section className="grid md:grid-cols-2 xl:grid-cols-3 justify-items-center lg:pl-[50px] lg:pr-[50px] pl-[10px] pr-[10px] justify-center gap-x-7">
+        <section className="grid md:grid-cols-2 xl:grid-cols-3 justify-items-center lg:pl-[50px] lg:pr-[50px] lg:justify-center gap-x-7 w-full">
           <Suspense>
             <ProductCard />
           </Suspense>

@@ -24,24 +24,23 @@ export default function MoreArticle({ type }: Props) {
   return (
     <>
       {type.length > 2 && (
-        <h1 className="mt-15 text-xl font-bold">
+        <h1 className="mt-15 text-xl font-bold max-lg:text-center">
           Découvrez des chaussures similaires :
         </h1>
       )}
 
-      <div className="relative mt-6 max-sm:w-[15rem] max-md:w-[25rem] w-[55rem]">
+      <div className="relative mt-6 max-lg:w-full w-[55rem]">
         <div className="overflow-hidden">
           <div
-            className="flex gap-x-5 transition-transform duration-300 max-md:flex-col max-md:items-center md:grid md:grid-cols-2 md:justify-items-center lg:flex"
+            className="flex lg:gap-x-5 transition-transform duration-300 max-md:flex-col max-md:items-center md:grid md:grid-cols-2 md:justify-items-center lg:flex"
             style={{ transform: `translateX(-${carousel}px)` }}
           >
             {type.map((prod) => (
               <Link
                 href={`/article/${prod.slug}`}
                 key={prod.slug}
-                className="relative sm:w-[280px] sm:h-[330px] w-[250px] h-[300px] flex-shrink-0"
+                className="relative lg:w-[280px] lg:h-[330px] max-md:w-full max-lg:w-[370px] h-[400px] flex-shrink-0 max-lg:mb-6"
               >
-                <p className="font-bold">{prod.name}</p>
                 <Image
                   src={prod.image ?? "/basket_violet"}
                   alt={prod.name}
