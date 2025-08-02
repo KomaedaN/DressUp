@@ -11,13 +11,14 @@ type PresentationProduct = {
   image: string;
   type: string;
 };
+const supabase = createClient();
 
 export default function DisplayProducts() {
   const [presentationProducts, setPresentationProducts] = useState<
     PresentationProduct[]
   >([]);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+
   useEffect(() => {
     async function fetchPresentationProducts() {
       setLoading(true);

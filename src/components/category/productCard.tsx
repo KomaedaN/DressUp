@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 
@@ -25,6 +25,15 @@ export default function ProductCard() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
+  const genderDeps = useMemo(
+    () => currentCategoryGender.join(","),
+    [currentCategoryGender]
+  );
+  const typeDeps = useMemo(
+    () => currentCategoryType.join(","),
+    [currentCategoryType]
+  );
+  const colorDeps = useMemo(() => currentColor.join(","), [currentColor]);
   useEffect(() => {
     async function fetchProducts() {
       const filters = [
@@ -52,11 +61,7 @@ export default function ProductCard() {
       setLoading(false);
     }
     fetchProducts();
-  }, [
-    currentCategoryGender.join(","),
-    currentCategoryType.join(","),
-    currentColor.join(","),
-  ]);
+  }, [supabase, genderDeps, typeDeps, colorDeps]);
 
   if (loading) return <p>Chargement...</p>;
   if (!products.length) return <p>Aucun produit trouvé.</p>;
