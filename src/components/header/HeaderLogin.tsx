@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { login, signup } from "@/app/login/action";
+import { login, signup } from "../../utils/supabase/loginSignup";
 
 export default function HeaderLogin() {
   const [isActive, setIsActive] = useState(false);

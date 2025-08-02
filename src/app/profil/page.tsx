@@ -12,7 +12,7 @@ export default async function ProfilPage() {
 
   return (
     <>
-      <h1>COOOOO</h1>
+      <h1>Se déconnecter</h1>
       <form action={logoutAction}>
         <button
           type="submit"
