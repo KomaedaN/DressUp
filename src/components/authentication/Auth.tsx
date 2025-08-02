@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 export default function LoginSignup() {
   const [email, setEmail] = useState("");
@@ -9,6 +9,7 @@ export default function LoginSignup() {
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState("");
 
+  const supabase = createClient();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

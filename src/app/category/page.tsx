@@ -1,6 +1,6 @@
 import FilterContent from "@/components/products/FilterContent";
-import BannerDetail from "@/components/BannerDetail";
-import ProductCard from "@/components/productCard";
+import BannerDetail from "@/components/category/BannerDetail";
+import ProductCard from "@/components/category/productCard";
 import Header from "@/components/Header";
 import { Suspense } from "react";
 

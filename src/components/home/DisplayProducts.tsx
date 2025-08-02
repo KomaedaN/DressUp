@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 type PresentationProduct = {
   id: number;
@@ -17,6 +17,7 @@ export default function DisplayProducts() {
     PresentationProduct[]
   >([]);
   const [loading, setLoading] = useState(true);
+  const supabase = createClient();
   useEffect(() => {
     async function fetchPresentationProducts() {
       setLoading(true);

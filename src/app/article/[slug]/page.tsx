@@ -1,7 +1,7 @@
 import ArticleDetail from "@/components/article/ArticleDetail";
 import MoreArticle from "@/components/article/MoreArticle";
 import Header from "@/components/Header";
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 type Props = {
   params: Promise<{
@@ -12,6 +12,7 @@ type Props = {
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
 
+  const supabase = createClient();
   const { data: product, error } = await supabase
     .from("products")
     .select("*")

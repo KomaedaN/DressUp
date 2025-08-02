@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 
 type Product = {
@@ -24,7 +24,7 @@ export default function ProductCard() {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const supabase = createClient();
   useEffect(() => {
     async function fetchProducts() {
       const filters = [
