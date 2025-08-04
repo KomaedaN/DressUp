@@ -1,17 +1,11 @@
 import { logoutAction } from "@/app/profil/actions";
-import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/server";
+
+import Header from "@/components/Header";
 
 export default async function ProfilPage() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.getUser();
-
-  if (error || !data?.user) {
-    redirect("/login");
-  }
-
   return (
     <>
+      <Header />
       <h1>Se déconnecter</h1>
       <form action={logoutAction}>
         <button
