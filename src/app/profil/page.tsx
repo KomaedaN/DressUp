@@ -7,7 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 
 export default async function ProfilPage() {
-  const { user, error: userError } = await getServerUser();
+  const { user } = await getServerUser();
   if (!user) {
     return <h1>Utilisateur non connecté</h1>;
   }
