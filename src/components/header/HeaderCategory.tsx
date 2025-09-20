@@ -7,7 +7,7 @@ export default function HeaderCategory() {
   const category = [
     { name: "Homme", type: ["Baskets", "Running", "Football", "Escalade"] },
     { name: "Femme", type: ["Baskets", "Running", "Football", "Escalade"] },
-    { name: "Accessoires", type: ["Semelle", "Bracelet"] },
+    /*{ name: "Accessoires", type: ["Semelle", "Bracelet"] },*/
   ];
   const [hovered, setHovered] = useState<string | null>(null);
   return (
